@@ -10,6 +10,7 @@ from aisdb.database.dbqry import DBQuery, DBQuery_async
 from aisdb.track_gen import encode_greatcircledistance_async
 from aisdb.track_gen import encode_greatcircledistance, min_speed_filter
 from aisdb.database.create_tables import aggregate_static_msgs
+from aisdb.tests.create_testing_data import sample_database_file
 
 start = datetime(2021, 11, 1)
 end = datetime(2021, 11, 2)
@@ -17,18 +18,9 @@ end = datetime(2021, 11, 2)
 
 def test_TrackGen(tmpdir):
     dbpath = os.path.join(tmpdir, 'test_trackgen_encode.db')
-    datapath = os.path.join(os.path.dirname(__file__),
-                            'testingdata_20211101.nm4')
-    with DBConn(dbpath=dbpath) as db:
-        decode_msgs(
-            db=db,
-            filepaths=[datapath],
-            dbpath=dbpath,
-            source='TESTING',
-            vacuum=False,
-            skip_checksum=True,
-        )
+    sample_database_file(dbpath)
 
+    with DBConn(dbpath=dbpath) as db:
         qry = DBQuery(
             db=db,
             start=start,
@@ -49,18 +41,9 @@ def test_TrackGen(tmpdir):
 
 def test_min_speed_filter(tmpdir):
     dbpath = os.path.join(tmpdir, 'test_trackgen_speed_filter.db')
-    datapath = os.path.join(os.path.dirname(__file__),
-                            'testingdata_20211101.nm4')
+    sample_database_file(dbpath)
 
     with DBConn(dbpath=dbpath) as db:
-        decode_msgs(
-            db=db,
-            filepaths=[datapath],
-            dbpath=dbpath,
-            source='TESTING',
-            vacuum=False,
-            skip_checksum=True,
-        )
         qry = DBQuery(
             db=db,
             start=start,
@@ -80,18 +63,7 @@ def test_min_speed_filter(tmpdir):
 @pytest.mark.asyncio
 async def test_TrackGen_async(tmpdir):
     dbpath = os.path.join(tmpdir, 'test_trackgen_async.db')
-    datapath = os.path.join(os.path.dirname(__file__),
-                            'testingdata_20211101.nm4')
-    with DBConn(dbpath=dbpath) as db1:
-        decode_msgs(
-            db=db1,
-            filepaths=[datapath],
-            dbpath=dbpath,
-            source='TESTING',
-            vacuum=False,
-            skip_checksum=True,
-        )
-        aggregate_static_msgs(db1, ["202111"])
+    sample_database_file(dbpath)
 
     async with DBConn_async(dbpath=dbpath) as db:
         assert isinstance(db.conn, Connection)
