@@ -1,6 +1,5 @@
 import datetime
 import tempfile
-import itertools
 import types
 import xarray as xr
 import numpy as np
@@ -171,9 +170,7 @@ class ClimateDataStore:
     def yield_tracks_with_weather(self, tracks) -> dict:
         assert isinstance(tracks, types.GeneratorType)
 
-        tracks, tracks_copy = itertools.tee(tracks)
-
-        for track in tracks_copy:      
+        for track in tracks:      
             longitudes = np.array(track['lon'])
             latitudes = np.array(track['lat'])
             timestamps = np.array(track['time'])
