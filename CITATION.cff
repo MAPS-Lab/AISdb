@@ -14,7 +14,7 @@ authors:
   - given-names: Vaishnav
   - family-names: Tharwani
     given-names: Jay Kumar
-version: "1.8.0a0"
+version: "1.8.0-alpha"
 date-released: "2026-07-06"
 url: "https://github.com/MAPS-Lab/AISdb"
 repository-code: "https://github.com/MAPS-Lab/AISdb"
