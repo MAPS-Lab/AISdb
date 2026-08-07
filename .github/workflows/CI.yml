@@ -396,7 +396,20 @@ jobs:
           fi
 
           brew services restart postgresql@17
-          sleep 5
+
+          # brew services returns as soon as launchd accepts the job, but the
+          # server needs longer to open its socket, and longer still here because
+          # the timescaledb library move forces a fresh start with the preload.
+          # The fixed sleep raced it: the move reported Success, the restart
+          # reported Success, and psql then failed with "connection to server on
+          # socket /tmp/.s.PGSQL.5432 failed: No such file or directory".
+          # Poll until the server actually accepts connections.
+          for _ in $(seq 1 60); do
+            pg_isready -q && break
+            sleep 2
+          done
+          pg_isready || { echo "postgres did not accept connections within 120s"; exit 1; }
+
           psql -U postgres -d postgres -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
 
       - name: Create Python virtual environment and install dependencies
