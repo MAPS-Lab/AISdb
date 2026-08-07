@@ -361,9 +361,27 @@ jobs:
       - name: Install PostgreSQL
         run: |
           brew update
-          brew install postgresql@17
-          brew link postgresql@17 --force
-          brew services start postgresql@17
+          brew tap timescale/tap
+          brew trust timescale/tap
+
+          # timescaledb_move.sh copies the module timescaledb was BUILT against
+          # into whichever postgresql keg is linked, and timescaledb-tune adds it
+          # to shared_preload_libraries. Install any other major and the postmaster
+          # refuses to load the module and dies at startup, which surfaces much
+          # later as "postgres did not accept connections". Follow the formula's
+          # own build dependency instead of pinning a major here.
+          PG_FORMULA=$(brew deps --include-build timescaledb \
+            | grep -oE 'postgresql@[0-9]+' | tail -1)
+          if [ -z "$PG_FORMULA" ]; then
+            echo "could not determine the postgresql major that timescaledb needs"
+            exit 1
+          fi
+          echo "timescaledb is built against $PG_FORMULA"
+          echo "PG_FORMULA=$PG_FORMULA" >> "$GITHUB_ENV"
+
+          brew install "$PG_FORMULA"
+          brew link "$PG_FORMULA" --force
+          brew services start "$PG_FORMULA"
           brew cleanup
 
       - name: Check PostgreSQL version
@@ -376,11 +394,9 @@ jobs:
 
       - name: Install TimescaleDB
         run: |
-          brew tap timescale/tap
-          brew trust timescale/tap
           brew install timescaledb
           timescaledb-tune --quiet --yes
-          brew services restart postgresql@17
+          brew services restart "$PG_FORMULA"
           brew cleanup
 
       - name: Setup TimescaleDB
@@ -395,20 +411,21 @@ jobs:
             exit 1
           fi
 
-          brew services restart postgresql@17
+          brew services restart "$PG_FORMULA"
 
-          # brew services returns as soon as launchd accepts the job, but the
-          # server needs longer to open its socket, and longer still here because
-          # the timescaledb library move forces a fresh start with the preload.
-          # The fixed sleep raced it: the move reported Success, the restart
-          # reported Success, and psql then failed with "connection to server on
-          # socket /tmp/.s.PGSQL.5432 failed: No such file or directory".
-          # Poll until the server actually accepts connections.
+          # brew services returns as soon as launchd accepts the job, so poll
+          # rather than sleeping a fixed amount. A failure here is normally the
+          # postmaster refusing to start at all, not slowness, so print its log
+          # before giving up.
           for _ in $(seq 1 60); do
             pg_isready -q && break
             sleep 2
           done
-          pg_isready || { echo "postgres did not accept connections within 120s"; exit 1; }
+          if ! pg_isready; then
+            echo "postgres did not accept connections within 120s; server log follows"
+            tail -100 "$(brew --prefix)/var/log/${PG_FORMULA}.log" || true
+            exit 1
+          fi
 
           psql -U postgres -d postgres -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
 
