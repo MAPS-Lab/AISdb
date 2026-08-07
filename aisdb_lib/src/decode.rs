@@ -197,9 +197,9 @@ fn validate_file_ext(filename: std::path::PathBuf) -> Result<(), String> {
         Some(ext_os_str) => match ext_os_str.to_str() {
             Some("nm4") | Some("NM4") | Some("nmea") | Some("NMEA") | Some("rx") | Some("txt")
             | Some("RX") | Some("TXT") => Ok(()),
-            _ => Err(format!("unknown file type! {:?}", &filename)),
+            _ => Err(format!("unknown file type! {filename:?}")),
         },
-        _ => Err(format!("unknown file type! {:?}", &filename)),
+        _ => Err(format!("unknown file type! {filename:?}")),
     }
 }
 
