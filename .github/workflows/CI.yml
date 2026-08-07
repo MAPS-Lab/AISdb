@@ -417,11 +417,15 @@ jobs:
           # rather than sleeping a fixed amount. A failure here is normally the
           # postmaster refusing to start at all, not slowness, so print its log
           # before giving up.
+          # Same host, port, user and database as the psql below, so the wait
+          # cannot succeed against a different connection than the one that
+          # actually has to work.
+          READY="pg_isready -h /tmp -p 5432 -U postgres -d postgres"
           for _ in $(seq 1 60); do
-            pg_isready -q && break
+            $READY -q && break
             sleep 2
           done
-          if ! pg_isready; then
+          if ! $READY; then
             echo "postgres did not accept connections within 120s; server log follows"
             tail -100 "$(brew --prefix)/var/log/${PG_FORMULA}.log" || true
             exit 1
