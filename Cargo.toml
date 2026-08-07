@@ -9,7 +9,7 @@ crate-type = [ "cdylib", "rlib", ]
 path = "src/lib.rs"
 
 [dependencies]
-geo = "0.29"
+geo = "0.33"
 geo-types = "0.7"
 nmea-parser = "0.11"
 sysinfo = "0.33"
