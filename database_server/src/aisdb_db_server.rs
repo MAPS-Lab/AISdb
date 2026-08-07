@@ -467,7 +467,7 @@ fn compress_geometry_vectors(tracks: Vec<Track>, precision: f64) -> Vec<Track> {
             .collect();
             let count_orig = coords.len();
 
-            let mut idx_deque = VecDeque::from_iter(LineString(coords).simplify_vw_idx(&precision));
+            let mut idx_deque = VecDeque::from_iter(LineString(coords).simplify_vw_idx(precision));
             let mut mask: Vec<bool> = Vec::with_capacity(count_orig);
             for i in 0..count_orig {
                 if idx_deque.front() == Some(&i) {

@@ -14,7 +14,7 @@ use nmea_parser::NmeaParser;
 use pyo3::exceptions::{PyRuntimeError, PyValueError};
 use pyo3::types::{PyModule, PyModuleMethods};
 use pyo3::{pyfunction, pymodule, wrap_pyfunction, Bound, PyErr, PyResult, Python};
-use sysinfo::{RefreshKind, System, SystemExt};
+use sysinfo::{MemoryRefreshKind, RefreshKind, System, MINIMUM_CPU_UPDATE_INTERVAL};
 
 use aisdb_lib::csvreader::{
     postgres_decodemsgs_ee_csv, postgres_decodemsgs_noaa_csv, sqlite_decodemsgs_ee_csv,
@@ -162,7 +162,9 @@ fn decoder_impl(
     bytesize *= 2;
     bytesize = bytesize.max(1);
 
-    let mut sys = System::new_with_specifics(RefreshKind::new().with_memory());
+    let mut sys = System::new_with_specifics(
+        RefreshKind::nothing().with_memory(MemoryRefreshKind::everything()),
+    );
     sys.refresh_memory();
 
     let worker_count = if workers > 0 {
@@ -219,7 +221,7 @@ fn decoder_impl(
         let psql_conn_string = psql_conn_string.clone();
 
         py.check_signals()?;
-        sleep(System::MINIMUM_CPU_UPDATE_INTERVAL);
+        sleep(MINIMUM_CPU_UPDATE_INTERVAL);
         sys.refresh_memory();
 
         if !allow_swap {
@@ -227,7 +229,7 @@ fn decoder_impl(
                 || sys.available_memory() < bytesize)
                 && in_process != 0
             {
-                sleep(System::MINIMUM_CPU_UPDATE_INTERVAL + Duration::from_millis(50));
+                sleep(MINIMUM_CPU_UPDATE_INTERVAL + Duration::from_millis(50));
                 py.check_signals()?;
                 match receiver.try_recv() {
                     Ok(r) => {
@@ -434,7 +436,7 @@ pub fn simplify_linestring_idx(x: Vec<f32>, y: Vec<f32>, precision: f32) -> PyRe
         let coords = zip!(&x, &y)
             .map(|(xx, yy)| Coord { x: *xx, y: *yy })
             .collect();
-        let line = LineString(coords).simplify_vw_idx(&precision);
+        let line = LineString(coords).simplify_vw_idx(precision);
         Ok(line.into_iter().collect::<Vec<usize>>())
     })
 }
