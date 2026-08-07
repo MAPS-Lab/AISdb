@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use geo_types::{Coord, LineString};
-use geojson::{Geometry, Value};
+use geojson::{Geometry, Position, Value};
 use serde::{Deserialize, Serialize};
 
 extern crate wasm_bindgen;
@@ -98,9 +98,11 @@ pub fn process_response(txt: JsValue) -> JsValue {
     let line = LineString(coords);
     let simplified_coords = line
         .into_iter()
-        .map(|p| vec![p.x as f64, p.y as f64])
-        .collect::<Vec<Vec<f64>>>();
-    let linegeojs = Geometry::new(Value::LineString(simplified_coords));
+        .map(|p| Position::from([p.x as f64, p.y as f64]))
+        .collect::<Vec<Position>>();
+    let linegeojs = Geometry::new(Value::LineString {
+        coordinates: simplified_coords,
+    });
     let rawresponse: Vec<u8> = linegeojs.to_string().chars().map(|x| x as u8).collect();
     let payload = Geojs {
         rawdata: rawresponse,
