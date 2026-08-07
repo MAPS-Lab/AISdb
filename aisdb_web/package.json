@@ -7,7 +7,7 @@
   "author": "MERIDIAN / Matt Smith",
   "scripts": {
     "dev": "vite map",
-    "build": "vite build"
+    "build": "vite build map"
   },
   "dependencies": {
     "express": "5.2.1",
