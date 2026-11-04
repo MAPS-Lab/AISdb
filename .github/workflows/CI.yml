@@ -243,7 +243,7 @@ jobs:
           wasm-pack --version
 
       - name: Setup PostgreSQL 17
-        uses: ikalnytskyi/action-setup-postgres@v8
+        uses: ikalnytskyi/action-setup-postgres@v9
         with:
           username: ${{ env.POSTGRES_USER }}
           password: ${{ env.POSTGRES_PASSWORD }}
@@ -488,7 +488,7 @@ jobs:
           node-version: '20'
 
       - name: Setup PostgreSQL 17
-        uses: ikalnytskyi/action-setup-postgres@v8
+        uses: ikalnytskyi/action-setup-postgres@v9
         with:
           username: postgres
           password: ${{ secrets.PGPASS || 'aisdb_ci_pw' }}
