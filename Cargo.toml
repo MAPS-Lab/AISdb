@@ -16,7 +16,6 @@ sysinfo = "0.39"
 
 [build-dependencies]
 wasm-opt = "0.116"
-wasm-pack = "0.15"
 
 [dependencies.futures]
 version = "0.3"
