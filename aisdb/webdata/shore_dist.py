@@ -100,8 +100,9 @@ class ShoreDist(RasterFile):
     data_url = "https://github.com/MAPS-Lab/AISdb/releases/download/data-v1/raster-shore.7z"
 
     def __init__(self, data_dir, tif_filename='distance-from-shore.tif'):
-        download_unzip(self.data_url, data_dir, bytesize=39911958)
         img_path = os.path.join(data_dir, tif_filename)
+        if not os.path.isfile(img_path):
+            download_unzip(self.data_url, data_dir, bytesize=39911958)
         assert os.path.isfile(img_path)
         super().__init__(img_path)
 
@@ -137,8 +138,9 @@ class PortDist(RasterFile):
     data_url = "https://github.com/MAPS-Lab/AISdb/releases/download/data-v1/raster-ports.7z"
 
     def __init__(self, data_dir, tif_filename='distance-from-port-v20201104.tiff'):
-        download_unzip(self.data_url, data_dir, bytesize=1263005549)
         img_path = os.path.join(data_dir, tif_filename)
+        if not os.path.isfile(img_path):
+            download_unzip(self.data_url, data_dir, bytesize=1263005549)
         assert os.path.isfile(img_path)
         super().__init__(img_path)
 
@@ -174,8 +176,9 @@ class CoastDist(RasterFile):
     data_url = "https://github.com/MAPS-Lab/AISdb/releases/download/data-v1/raster-coast.7z"
 
     def __init__(self, data_dir, tif_filename='GMT_intermediate_coast_distance_01d.tif'):
-        download_unzip(self.data_url, data_dir, bytesize=58802115)
         img_path = os.path.join(data_dir, tif_filename)
+        if not os.path.isfile(img_path):
+            download_unzip(self.data_url, data_dir, bytesize=58802115)
         assert os.path.isfile(img_path)
         super().__init__(img_path)
 
