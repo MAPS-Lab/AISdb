@@ -22,6 +22,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let wasm_build = Command::new("wasm-pack")
+        // Cargo gives build scripts the host's rustflags here; the wasm32 build must not inherit them.
+        .env_remove("CARGO_ENCODED_RUSTFLAGS")
         .current_dir(format!("{}", rootdir.join("client_webassembly").display()))
         .args([
             "build",
