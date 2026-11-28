@@ -99,6 +99,14 @@ Bathymetry, distance-to-shore, and distance-to-port rasters used by `aisdb.webda
 - [NOAA-Integrator](https://github.com/MAPS-Lab/NOAA-Integrator) acquires AIS data from NOAA Marine Cadastre and loads it into AISdb-aligned databases
 - [Tutorials](https://github.com/MAPS-Lab/AISdb-Tutorials) collects notebooks with worked examples for AISdb workflows
 
+## Contributors
+
+AISdb is the work of everyone who contributed to it.
+
+<a href="https://github.com/MAPS-Lab/AISdb/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MAPS-Lab/AISdb" alt="Avatars of the AISdb contributors" />
+</a>
+
 ## Citation
 
 If you use AISdb in your work, please cite it. Citation metadata lives in [CITATION.cff](CITATION.cff), and the BibTeX entry follows.
