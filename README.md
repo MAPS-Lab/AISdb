@@ -1,5 +1,8 @@
 # AISdb
 
+> [!IMPORTANT]
+> This repository is archived and no longer receives updates, fixes or releases. It stays available read-only for reference and citation. The published versions remain installable, but no new version will follow.
+
 AISdb is an open-source database system for storing, retrieving, analyzing, and visualizing Automatic Identification System (AIS) data. It serves the data needs of the maritime domain, supporting research, development, and operational safety with a Python interface backed by a Rust core and SQLite or PostgreSQL/TimescaleDB storage. AISdb is developed and maintained by the [MAPS Lab](https://mapslab.tech/) at Dalhousie University, continuing work that began under the [MERIDIAN](https://meridian.cs.dal.ca) initiative.
 
 ## Features
