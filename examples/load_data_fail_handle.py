@@ -3,6 +3,7 @@ import time
 import shutil
 import glob
 import os
+import tempfile
 
 # psql connection string
 USER = '' # specify username
@@ -21,9 +22,13 @@ failed_batches = set() # store the failed months and loop through later
 
 overall_start_time = time.time()
 
+# decode_msgs unzips into tempfile.mkdtemp() directories, so point them at one directory this script owns
+WORK_TMP = tempfile.mkdtemp(prefix='aisdb_load_')
+tempfile.tempdir = WORK_TMP
+
 def clean_tmp_folders():
-    """Remove all /tmp/tmp* directories before retrying."""
-    tmp_dirs = glob.glob('/tmp/tmp*')
+    """Remove the directories decode_msgs left in this script's own temporary directory before retrying."""
+    tmp_dirs = glob.glob(os.path.join(WORK_TMP, '*'))
     for tmp_dir in tmp_dirs:
         if os.path.isdir(tmp_dir):
             try:
