@@ -11,7 +11,6 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import importlib.metadata
-from datetime import datetime
 
 try:
     _version = importlib.metadata.version("aisdb")
@@ -20,8 +19,8 @@ except importlib.metadata.PackageNotFoundError:
 
 # -- Project information -----------------------------------------------------
 
-project = "AISDB"
-copyright = f"{datetime.today().year}, MAPS Lab"
+project = "AISdb"
+copyright = "2023-2026, MAPS Lab, Dalhousie University"
 author = "MAPS Lab"
 version = ".".join(_version.split(".")[:2])
 release = _version
@@ -61,7 +60,7 @@ html_theme_options = {}
 # html_static_path = ['_static']
 # html_static_path = ['.']
 
-html_favicon = "https://aisviz.cs.dal.ca/favicon.svg"
+html_favicon = "../../aisdb_web/map/public/favicon.svg"
 
 html_css_files = [
     #'custom.css',

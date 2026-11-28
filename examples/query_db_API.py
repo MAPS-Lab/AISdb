@@ -13,11 +13,6 @@ db_hostname = 'wss://aisviz.cs.dal.ca/ws'
 db_hostname = os.environ.get('AISDBHOST', db_hostname)
 
 
-# Default docker IPv6 address and port number.
-# See docker-compose.yml for configuration.
-# db_hostname = 'ws://[fc00::6]:9924'
-
-
 class DatabaseRequest():
     ''' Methods in this class are used to generate JSON-formatted AIS requests,
         as an interface to the AISDB WebSocket API.

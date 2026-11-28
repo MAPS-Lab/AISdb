@@ -1,7 +1,7 @@
 [package]
 version = "1.8.0-alpha"
 name = "aisdb-lib"
-authors = [ "AISViz Maintainers // mapslab@dal.ca",]
+authors = [ "MAPS Lab <mapslab@dal.ca>",]
 edition = "2021"
 include = [ "../aisdb/aisdb_sql", "/src/*",]
 build = "build.rs"

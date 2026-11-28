@@ -2,9 +2,10 @@
 Changelog
 =========
 
-unreleased
-----------
+final archived state (never released)
+-------------------------------------
 
+changes on master after v1.8.0-alpha, archived without a release.
 retarget all repository urls and package metadata from the AISViz org to
 MAPS-Lab, resolve the 40 outstanding Dependabot alerts across the Cargo
 and npm dependency trees, upgrade tungstenite to 0.29 and send websocket

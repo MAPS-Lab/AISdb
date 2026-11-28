@@ -36,7 +36,7 @@ def clean_tmp_folders():
 def month_process(year: int, month: int) -> bool:
     print(f'Loading {year}{month:02d}')
 
-    filepaths = aisdb.glob_files(f'/slow-array/Spire/{year}{month:02d}/', '.zip')
+    filepaths = aisdb.glob_files(f'./Spire/{year}{month:02d}/', '.zip')
     filepaths = sorted([f for f in filepaths if f'{year}{month:02d}' in f])
 
     print(f'Number of files: {len(filepaths)}')

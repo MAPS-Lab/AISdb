@@ -231,12 +231,12 @@
 |vertical_integral_of_divergence_of_kinetic_energy_flux         |viked         |W m**-2              |https://codes.ecmwf.int/grib/param-db/162082     |
 |vertical_integral_of_divergence_of_mass_flux                   |vimad         |kg m**-2 s**-1       |https://codes.ecmwf.int/grib/param-db/162081     |
 |vertical_integral_of_divergence_of_moisture_flux               |vimdf         |kg m**-2 s**-1       |https://codes.ecmwf.int/grib/param-db/162084     |
-|vertical_integral_of_divergence_of_ozone_flux                  |viozd         |kg m**-2 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162087|
-|vertical_integral_of_divergence_of_thermal_energy_flux         |vithed        |W m**-2              |https://apps.ecmwf.int/codes/grib/param-db/162083|
-|vertical_integral_of_divergence_of_total_energy_flux           |vited         |W m**-2              |https://apps.ecmwf.int/codes/grib/param-db/162086|
-|vertical_integral_of_eastward_cloud_frozen_water_flux          |viiwe         |kg m**-1 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162090|
-|vertical_integral_of_eastward_cloud_liquid_water_flux          |vilwe         |kg m**-1 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162088|
-|vertical_integral_of_eastward_geopotential_flux                |vige          |W m**-1              |https://apps.ecmwf.int/codes/grib/param-db/162073|
+|vertical_integral_of_divergence_of_ozone_flux                  |viozd         |kg m**-2 s**-1       |https://codes.ecmwf.int/grib/param-db/162087     |
+|vertical_integral_of_divergence_of_thermal_energy_flux         |vithed        |W m**-2              |https://codes.ecmwf.int/grib/param-db/162083     |
+|vertical_integral_of_divergence_of_total_energy_flux           |vited         |W m**-2              |https://codes.ecmwf.int/grib/param-db/162086     |
+|vertical_integral_of_eastward_cloud_frozen_water_flux          |viiwe         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162090     |
+|vertical_integral_of_eastward_cloud_liquid_water_flux          |vilwe         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162088     |
+|vertical_integral_of_eastward_geopotential_flux                |vige          |W m**-1              |https://codes.ecmwf.int/grib/param-db/162073     |
 |vertical_integral_of_eastward_heat_flux                        |vithee        |W m**-1              |https://codes.ecmwf.int/grib/param-db/162069     |
 |vertical_integral_of_eastward_kinetic_energy_flux              |vikee         |W m**-1              |https://codes.ecmwf.int/grib/param-db/162067     |
 |vertical_integral_of_eastward_mass_flux                        |vimae         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162065     |
@@ -244,19 +244,19 @@
 |vertical_integral_of_eastward_total_energy_flux                |vitee         |W m**-1              |https://codes.ecmwf.int/grib/param-db/162075     |
 |vertical_integral_of_eastward_water_vapour_flux                |viwve         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162071     |
 |vertical_integral_of_energy_conversion                         |viec          |W m**-2              |https://codes.ecmwf.int/grib/param-db/162064     |
-|vertical_integral_of_kinetic_energy                            |vike          |J m**-2              |https://apps.ecmwf.int/codes/grib/param-db/162059|
-|vertical_integral_of_mass_of_atmosphere                        |vima          |kg m**-2             |https://apps.ecmwf.int/codes/grib/param-db/162053|
-|vertical_integral_of_mass_tendency                             |vimat         |kg m**-2 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162092|
-|vertical_integral_of_northward_cloud_frozen_water_flux         |viiwn         |kg m**-1 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162091|
-|vertical_integral_of_northward_cloud_liquid_water_flux         |vilwn         |kg m**-1 s**-1       |https://apps.ecmwf.int/codes/grib/param-db/162089|
-|vertical_integral_of_northward_geopotential_flux               |vign          |W m**-1              |https://apps.ecmwf.int/codes/grib/param-db/162074|
+|vertical_integral_of_kinetic_energy                            |vike          |J m**-2              |https://codes.ecmwf.int/grib/param-db/162059     |
+|vertical_integral_of_mass_of_atmosphere                        |vima          |kg m**-2             |https://codes.ecmwf.int/grib/param-db/162053     |
+|vertical_integral_of_mass_tendency                             |vimat         |kg m**-2 s**-1       |https://codes.ecmwf.int/grib/param-db/162092     |
+|vertical_integral_of_northward_cloud_frozen_water_flux         |viiwn         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162091     |
+|vertical_integral_of_northward_cloud_liquid_water_flux         |vilwn         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162089     |
+|vertical_integral_of_northward_geopotential_flux               |vign          |W m**-1              |https://codes.ecmwf.int/grib/param-db/162074     |
 |vertical_integral_of_northward_heat_flux                       |vithen        |W m**-1              |https://codes.ecmwf.int/grib/param-db/162070     |
 |vertical_integral_of_northward_kinetic_energy_flux             |vithen        |W m**-1              |https://codes.ecmwf.int/grib/param-db/162068     |
 |vertical_integral_of_northward_mass_flux                       |viman         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162066     |
 |vertical_integral_of_northward_ozone_flux                      |viozn         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162078     |
 |vertical_integral_of_northward_total_energy_flux               |viten         |W m**-1              |https://codes.ecmwf.int/grib/param-db/162076     |
 |vertical_integral_of_northward_water_vapour_flux               |viwvn         |kg m**-1 s**-1       |https://codes.ecmwf.int/grib/param-db/162072     |
-|vertical_integral_of_potential_and_internal_energy             |vipie         |J m**-2              |https://apps.ecmwf.int/codes/grib/param-db/162061|
+|vertical_integral_of_potential_and_internal_energy             |vipie         |J m**-2              |https://codes.ecmwf.int/grib/param-db/162061     |
 |vertical_integral_of_potential_internal_and_latent_energy      |vipile        |J m**-2              |https://codes.ecmwf.int/grib/param-db/162062     |
 |vertical_integral_of_temperature                               |vit           |K kg m**-2           |https://codes.ecmwf.int/grib/param-db/162054     |
 |vertical_integral_of_thermal_energy                            |vithe         |J m**-2              |https://codes.ecmwf.int/grib/param-db/162060     |
